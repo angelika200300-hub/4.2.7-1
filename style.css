@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #C680F4;
+    background: radial-gradient(at center, #F4D9FF, #ffffff);
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    padding: 20px 0 20px 0;
+}
+
+.gradientProject {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+    border-radius: 15px;
+    padding: 50px;
+}
+
+.gradientProjectItem {
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+    background: linear-gradient(0deg, #9443C9, #C29AD2);
+    border: none;
+}
+
+.dropbtn {
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom: 2px solid #4B0082;
+    width: 468px;
+}
+
+input[type="text"] {
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+input:focus {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #4B0082;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.dropdown-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: none;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #D8BFD8;
+}
+
+.itemSerch {
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.itemSerch:hover {
+    background-color: #D8BFD8;
+}
+
+.itemSerch:active {
+    background-color: #C680F4;
+}
+
+.item:last-child,
+.dropdown-content a:last-child,
+.itemSerch:last-child,
+.item:nth-child(3) {
+    border-bottom: none;
+}
+
+.item {
+    border-bottom: 2px solid #4B0082;
+}
+
+.RepoList {
+    display: flex;
+}
+
+.repoInfo {
+    width: 400px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.cross {
+    width: 100px;
+    height: 100px;
+}
+
+.crossInfo {
+    padding-left: 28px;
+    padding-top: 28px;
+}
+
+.show {
+    display: none;
+}
+
+.cross {
+    cursor: pointer;
+}
+
+.crossLeft,
+.crossRight {
+    position: absolute;
+}
