@@ -7,7 +7,7 @@ let currentSearchQuery = '';
 
 async function searchRepositories(query) {
   if (!query) {
-    dropdownContent.innerHTML = '';
+    clearExistingResults();
     return [];
   }
 
@@ -17,34 +17,31 @@ async function searchRepositories(query) {
     return data.items || [];
   } catch (error) {
     console.error('Ошибка при поиске репозиториев:', error);
+    clearExistingResults();
     return [];
   }
 }
 
 function displaySearchResults(repos) {
-  dropdownContent.innerHTML = '';
+  const existingItems = dropdownContent.querySelectorAll('.itemSerch');
 
-  if (repos.length === 0) {
-    const noResultsItem = document.createElement('div');
-    noResultsItem.className = 'itemSerch';
-    noResultsItem.textContent = 'Репозитории не найдены.';
-    noResultsItem.style.textAlign = 'center';
-    dropdownContent.appendChild(noResultsItem);
-    return;
-  }
-
-  repos.forEach(repo => {
-    const itemElement = document.createElement('div');
-    itemElement.className = 'itemSerch';
-
-    itemElement.dataset.repoName = repo.name;
-    itemElement.dataset.ownerLogin = repo.owner.login;
-    itemElement.dataset.starsCount = repo.stargazers_count;
-
-    itemElement.textContent = repo.name;
-
-    dropdownContent.appendChild(itemElement);
+  existingItems.forEach((itemElement, index) => {
+    if (repos[index]) {
+      const repo = repos[index];
+      itemElement.textContent = repo.name;
+      itemElement.dataset.repoName = repo.name;
+      itemElement.dataset.ownerLogin = repo.owner.login;
+      itemElement.dataset.starsCount = repo.stargazers_count;
+      itemElement.style.display = 'block';
+    } else {
+      itemElement.style.display = 'none';
+    }
   });
+}
+
+function clearExistingResults() {
+  const existingItems = dropdownContent.querySelectorAll('.itemSerch');
+  existingItems.forEach(item => item.style.display = 'none');
 }
 
 function addRepositoryToList(repoName, repoOwner, repoStars) {
@@ -68,7 +65,6 @@ searchInput.addEventListener('input', (e) => {
   const query = e.target.value.trim();
 
   if (searchTimeout) clearTimeout(searchTimeout);
-  if (query === '') { dropdownContent.innerHTML = ''; currentSearchQuery = ''; return; }
 
   searchTimeout = setTimeout(async () => {
     if (query !== currentSearchQuery) {
